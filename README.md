@@ -66,7 +66,7 @@ memory-mapped I/O
 
 ```bash
 # Clone the repository
-git clone https://github.com/andrewthecodertx/go-65c02-emulator.git
+git clone https://github.com/andrewthecodertx/go-6502-emulator.git
 cd go-6502
 
 # Build the project
@@ -80,7 +80,7 @@ go build -o go-6502 ./cmd/go-6502
 Add the module to your project:
 
 ```bash
-go get github.com/andrewthecodertx/go-65c02-emulator
+go get github.com/andrewthecodertx/go-6502-emulator
 ```
 
 ### Basic Example - NMOS 6502
@@ -89,7 +89,7 @@ go get github.com/andrewthecodertx/go-65c02-emulator
 package main
 
 import (
-    "github.com/andrewthecodertx/go-65c02-emulator/pkg/mos6502"
+    "github.com/andrewthecodertx/go-6502-emulator/pkg/mos6502"
 )
 
 // SimpleRAM implements a basic 64KB memory
@@ -140,7 +140,7 @@ func main() {
 package main
 
 import (
-    "github.com/andrewthecodertx/go-65c02-emulator/pkg/wdc65c02"
+    "github.com/andrewthecodertx/go-6502-emulator/pkg/wdc65c02"
 )
 
 func main() {
@@ -174,7 +174,7 @@ The `Bus` interface allows you to implement custom memory behavior:
 package main
 
 import (
-    "github.com/andrewthecodertx/go-65c02-emulator/pkg/core"
+    "github.com/andrewthecodertx/go-6502-emulator/pkg/core"
 )
 
 // MemoryMapper with ROM and RAM regions
