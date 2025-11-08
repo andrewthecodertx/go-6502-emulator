@@ -3,7 +3,7 @@ package wdc65c02
 import (
 	"testing"
 
-	"github.com/andrewthecodertx/go-65c02-emulator/pkg/core"
+	"github.com/andrewthecodertx/go-6502-emulator/pkg/core"
 )
 
 // SimpleRAM is a simple RAM implementation for testing

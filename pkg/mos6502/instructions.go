@@ -1,6 +1,6 @@
 package mos6502
 
-import "github.com/andrewthecodertx/go-65c02-emulator/pkg/mos6502/instructions"
+import "github.com/andrewthecodertx/go-6502-emulator/pkg/mos6502/instructions"
 
 // This file contains wrapper methods that delegate to the instruction implementations.
 // These methods satisfy the instruction map signatures which expect *CPU methods.
@@ -47,10 +47,21 @@ func (c *CPU) asl(addr uint16, pageCrossed bool) { instructions.ASL(c.BaseCPU, a
 func (c *CPU) lsr(addr uint16, pageCrossed bool) { instructions.LSR(c.BaseCPU, addr, pageCrossed) }
 func (c *CPU) rol(addr uint16, pageCrossed bool) { instructions.ROL(c.BaseCPU, addr, pageCrossed) }
 func (c *CPU) ror(addr uint16, pageCrossed bool) { instructions.ROR(c.BaseCPU, addr, pageCrossed) }
-func (c *CPU) aslAccumulator(addr uint16, pageCrossed bool) { instructions.ASLAccumulator(c.BaseCPU, addr, pageCrossed) }
-func (c *CPU) lsrAccumulator(addr uint16, pageCrossed bool) { instructions.LSRAccumulator(c.BaseCPU, addr, pageCrossed) }
-func (c *CPU) rolAccumulator(addr uint16, pageCrossed bool) { instructions.ROLAccumulator(c.BaseCPU, addr, pageCrossed) }
-func (c *CPU) rorAccumulator(addr uint16, pageCrossed bool) { instructions.RORAccumulator(c.BaseCPU, addr, pageCrossed) }
+func (c *CPU) aslAccumulator(addr uint16, pageCrossed bool) {
+	instructions.ASLAccumulator(c.BaseCPU, addr, pageCrossed)
+}
+
+func (c *CPU) lsrAccumulator(addr uint16, pageCrossed bool) {
+	instructions.LSRAccumulator(c.BaseCPU, addr, pageCrossed)
+}
+
+func (c *CPU) rolAccumulator(addr uint16, pageCrossed bool) {
+	instructions.ROLAccumulator(c.BaseCPU, addr, pageCrossed)
+}
+
+func (c *CPU) rorAccumulator(addr uint16, pageCrossed bool) {
+	instructions.RORAccumulator(c.BaseCPU, addr, pageCrossed)
+}
 
 // Logic instructions
 func (c *CPU) and(addr uint16, pageCrossed bool) { instructions.AND(c.BaseCPU, addr, pageCrossed) }

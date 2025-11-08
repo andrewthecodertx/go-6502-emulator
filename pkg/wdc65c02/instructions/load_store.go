@@ -1,6 +1,6 @@
 package instructions
 
-import "github.com/andrewthecodertx/go-65c02-emulator/pkg/core"
+import "github.com/andrewthecodertx/go-6502-emulator/pkg/core"
 
 // Load/Store instructions for WDC65C02
 // These are identical to NMOS 6502

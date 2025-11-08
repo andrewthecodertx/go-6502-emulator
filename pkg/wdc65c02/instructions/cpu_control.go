@@ -1,6 +1,6 @@
 package instructions
 
-import "github.com/andrewthecodertx/go-65c02-emulator/pkg/core"
+import "github.com/andrewthecodertx/go-6502-emulator/pkg/core"
 
 // CPU control instructions - NEW in WDC65C02
 

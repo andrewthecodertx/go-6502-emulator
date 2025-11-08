@@ -30,7 +30,7 @@
 package wdc65c02
 
 import (
-	"github.com/andrewthecodertx/go-65c02-emulator/pkg/core"
+	"github.com/andrewthecodertx/go-6502-emulator/pkg/core"
 )
 
 // CPU represents a WDC65C02 processor

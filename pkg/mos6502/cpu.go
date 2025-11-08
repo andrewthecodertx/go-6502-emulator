@@ -34,7 +34,7 @@ package mos6502
 import (
 	"fmt"
 
-	"github.com/andrewthecodertx/go-65c02-emulator/pkg/core"
+	"github.com/andrewthecodertx/go-6502-emulator/pkg/core"
 )
 
 // CPU represents an NMOS 6502 processor
