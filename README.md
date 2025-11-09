@@ -60,8 +60,8 @@ memory-mapped I/O
 git clone https://github.com/andrewthecodertx/go-6502-emulator.git
 cd go-6502-emulator
 
-# Build the project
-go build -o go-6502 ./cmd/go-6502
+# Run tests to verify installation
+go test ./...
 ```
 
 ## Usage
@@ -210,8 +210,7 @@ func (d *DebugBus) Write(addr uint16, data byte) {
 ### Package Structure
 
 ```
-go-6502/
-├── cmd/go-6502/          # Main executable
+go-6502-emulator/
 ├── pkg/
 │   ├── core/             # Shared components
 │   │   ├── cpu.go        # BaseCPU with common operations
@@ -226,6 +225,8 @@ go-6502/
 │       ├── cpu.go        # WDC 65C02 CPU
 │       ├── addressing.go # 65C02-specific addressing
 │       └── instructions/ # Instruction implementations
+├── docs/                 # Documentation
+├── CLAUDE.md             # Claude Code guidance
 └── README.md
 ```
 
@@ -309,19 +310,16 @@ Tests are located alongside the code they test:
 - `pkg/mos6502/hardware_test.go` - Hardware quirk tests (JMP bug, etc.)
 - `pkg/wdc65c02/cpu_test.go` - WDC65C02 CPU tests
 
-## Building
+## Development
+
+This is a library package, not a standalone executable. To use it in your project:
 
 ```bash
-# Build for current platform
-go build -o go-6502 ./cmd/go-6502
+# Import in your Go code
+go get github.com/andrewthecodertx/go-6502-emulator
 
-# Build for specific platforms
-GOOS=linux GOARCH=amd64 go build -o go-6502-linux ./cmd/go-6502
-GOOS=windows GOARCH=amd64 go build -o go-6502.exe ./cmd/go-6502
-GOOS=darwin GOARCH=arm64 go build -o go-6502-mac ./cmd/go-6502
-
-# Build with optimizations
-go build -ldflags="-s -w" -o go-6502 ./cmd/go-6502
+# Or if developing locally
+go mod tidy
 ```
 
 ## References
