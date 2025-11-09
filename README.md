@@ -1,6 +1,6 @@
-# go-6502
+# go-6502-emulator
 
-A cycle-accurate emulator for the MOS 6502 and WDC 65C02 8-bit microprocessors,
+A cycle-accurate emulator for the MOS6502 and WDC65C02 8-bit microprocessors,
 written in Go.
 
 ## Overview
@@ -8,17 +8,8 @@ written in Go.
 This project provides high-fidelity emulation of two classic 8-bit processors
 that powered many iconic computers and gaming systems:
 
-- **NMOS 6502**: The original MOS Technology 6502 processor (1975)
-- **WDC 65C02**: The Western Design Center's enhanced CMOS version (1982)
-
-These processors were used in legendary systems including:
-
-- Commodore 64
-- Apple II series
-- Atari 2600 and 8-bit computers
-- Nintendo Entertainment System (NES)
-- BBC Micro
-- And many more
+- **MOS6502**: The original MOS Technology 6502 processor (1975)
+- **WDC65C02**: The Western Design Center's enhanced CMOS version (1982)
 
 ## Features
 
@@ -26,17 +17,17 @@ These processors were used in legendary systems including:
 
 - **Cycle-accurate execution**: Faithfully reproduces timing behavior including
 page-crossing penalties
-- **Complete instruction set**: All 56 documented NMOS 6502 instructions plus 27
-additional WDC 65C02 instructions
+- **Complete instruction set**: All 56 documented MOS6502 instructions plus 27
+additional WDC65C02 instructions
 - **All addressing modes**: 13 addressing modes for 6502, plus 2 new modes for
 65C02
-- **Hardware quirks**: Implements the JMP indirect page boundary bug on NMOS
-6502 (fixed in 65C02)
+- **Hardware quirks**: Implements the JMP indirect page boundary bug on MOS6502
+(fixed in 65C02)
 - **Interrupt support**: NMI, IRQ, and RESET vectors with proper handling
 - **Flexible bus interface**: Pluggable memory system supporting RAM, ROM, and
 memory-mapped I/O
 
-### NMOS 6502 Features
+### MOS6502 Features
 
 - 56 documented instructions
 - JMP indirect page boundary bug (hardware-accurate)
@@ -44,7 +35,7 @@ memory-mapped I/O
 - Decimal mode does NOT clear on interrupts
 - Undefined behavior for illegal opcodes
 
-### WDC 65C02 Enhancements
+### WDC65C02 Enhancements
 
 - All NMOS 6502 instructions plus 27 new instructions:
   - `STZ` - Store Zero
@@ -67,7 +58,7 @@ memory-mapped I/O
 ```bash
 # Clone the repository
 git clone https://github.com/andrewthecodertx/go-6502-emulator.git
-cd go-6502
+cd go-6502-emulator
 
 # Build the project
 go build -o go-6502 ./cmd/go-6502
@@ -83,7 +74,7 @@ Add the module to your project:
 go get github.com/andrewthecodertx/go-6502-emulator
 ```
 
-### Basic Example - NMOS 6502
+### Basic Example - MOS6502
 
 ```go
 package main
@@ -134,7 +125,7 @@ func main() {
 }
 ```
 
-### Basic Example - WDC 65C02
+### Basic Example - WDC65C02
 
 ```go
 package main
@@ -314,9 +305,9 @@ go test -cover ./...
 
 Tests are located alongside the code they test:
 
-- `pkg/mos6502/cpu_test.go` - NMOS 6502 CPU tests
+- `pkg/mos6502/cpu_test.go` - MOS6502 CPU tests
 - `pkg/mos6502/hardware_test.go` - Hardware quirk tests (JMP bug, etc.)
-- `pkg/wdc65c02/cpu_test.go` - WDC 65C02 CPU tests
+- `pkg/wdc65c02/cpu_test.go` - WDC65C02 CPU tests
 
 ## Building
 
@@ -335,7 +326,7 @@ go build -ldflags="-s -w" -o go-6502 ./cmd/go-6502
 
 ## References
 
-### MOS 6502 (NMOS)
+### MOS6502 (NMOS)
 
 - [6502.org](http://www.6502.org/) - Comprehensive 6502 resources
 - [Visual 6502](http://www.visual6502.org/) - Visual simulator and transistor-level analysis
@@ -343,17 +334,18 @@ go build -ldflags="-s -w" -o go-6502 ./cmd/go-6502
 - [6502 Instruction Reference](http://www.6502.org/tutorials/6502opcodes.html) - Complete opcode table
 - [Wikipedia: MOS Technology 6502](https://en.wikipedia.org/wiki/MOS_Technology_6502)
 
-### WDC 65C02
+### WDC65C02
 
 - [Western Design Center](https://www.westerndesigncenter.com/wdc/) - Official WDC website
 - [W65C02S Datasheet](https://www.westerndesigncenter.com/wdc/documentation/w65c02s.pdf) - Official 65C02 datasheet
 - [65C02 Instruction Set](https://www.westerndesigncenter.com/wdc/documentation/w65c02s_instruction_set.pdf) - Complete instruction reference
-- [Wikipedia: WDC 65C02](https://en.wikipedia.org/wiki/WDC_65C02)
+- [Wikipedia: WDC65C02](https://en.wikipedia.org/wiki/WDC_65C02)
 
 ### General Resources
 
 - [6502 Assembly Tutorial](http://www.obelisk.me.uk/6502/) - Beginner-friendly tutorial
-- [Easy 6502](https://skilldrick.github.io/easy6502/) - Interactive 6502 programming tutorial
+- [Easy 6502](https://skilldrick.github.io/easy6502/) - Interactive 6502
+programming tutorial
 - [NesDev Wiki](https://www.nesdev.org/wiki/CPU) - NES-specific 6502 information
 
 ## Implementation Details
@@ -369,15 +361,15 @@ The emulator maintains cycle-accurate timing by:
 
 ### Hardware Quirks
 
-**JMP Indirect Page Boundary Bug (NMOS 6502 only):**
+**JMP Indirect Page Boundary Bug (MOS6502 only):**
 
 The original 6502 has a bug where `JMP ($xxFF)` incorrectly reads the high byte
 from `$xx00` instead of `$(xx+1)00`. This emulator faithfully reproduces this
-behavior for NMOS 6502 and fixes it for WDC 65C02.
+behavior for MOS6502 and fixes it for WDC65C02.
 
 ```
-NMOS 6502:  JMP ($10FF) reads low from $10FF, high from $1000 (BUG)
-WDC 65C02:  JMP ($10FF) reads low from $10FF, high from $1100 (FIXED)
+NMOS6502:  JMP ($10FF) reads low from $10FF, high from $1000 (BUG)
+WDC65C02:  JMP ($10FF) reads low from $10FF, high from $1100 (FIXED)
 ```
 
 ### Decimal Mode
@@ -385,13 +377,13 @@ WDC 65C02:  JMP ($10FF) reads low from $10FF, high from $1100 (FIXED)
 Both processors support BCD (Binary Coded Decimal) mode for ADC and SBC
 instructions. Key difference:
 
-- **NMOS 6502**: Decimal flag persists through interrupts
-- **WDC 65C02**: Decimal flag is automatically cleared on interrupt
+- **MOS6502**: Decimal flag persists through interrupts
+- **WDC65C02**: Decimal flag is automatically cleared on interrupt
 
 ### Illegal Opcodes
 
-- **NMOS 6502**: Undefined behavior (currently halts emulator)
-- **WDC 65C02**: All illegal opcodes are treated as NOPs (1 byte, 1 cycle)
+- **MOS6502**: Undefined behavior (currently halts emulator)
+- **WDC65C02**: All illegal opcodes are treated as NOPs (1 byte, 1 cycle)
 
 ## Performance
 
@@ -406,7 +398,7 @@ real-time emulation of complete systems. Performance characteristics:
 
 Contributions are welcome! Areas for improvement:
 
-- [ ] Illegal opcode support for NMOS 6502
+- [ ] Illegal opcode support for MOS6502
 - [ ] Decimal mode flag accuracy improvements
 - [ ] Cycle-level bus access simulation
 - [ ] More comprehensive test suites
